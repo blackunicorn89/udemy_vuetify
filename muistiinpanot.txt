@@ -1,0 +1,12 @@
+data() {}
+watch: {
+ name(newvalue, oldvalue) {
+}
+}
+computed: {}
+methods: {}
+avainsanoja ei voi muuttaa
+computed-metodeja käytetään ainoastaan, kun halutaan näyttää jotain näytöllä. Muutetaan käytetään metodeja. 
+v-on:click = @click
+v-value = :value
+v-bind:style = :style

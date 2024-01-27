@@ -1,0 +1,76 @@
+<template>
+  <li>
+    <h2>{{ name }} {{ this.isFavorite ? "(Favorite)" : "(Perhaps)" }}</h2>
+    <button @click="toggleFavorite">Toggle Favorite</button>
+    <button @click="toggleDetails">
+      {{ detailsAreVisible ? "Hide" : "Show" }} details
+    </button>
+    <ul v-if="detailsAreVisible">
+      <li><strong>Phone: </strong>{{ phoneNumber }}</li>
+      <li><strong>Email: </strong>{{ emailAddress }}</li>
+    </ul>
+    <button @click="deleteContact">Delete Contact</button>
+  </li>
+</template>
+
+<script>
+export default {
+  // props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFavorite: {
+      type: Boolean,
+      required: false,
+      default: false,
+      // validator: function (value) {
+      //   return value === "1" || value === "0";
+      // },
+    },
+  },
+  emits: ["toggle-favorite", "delete-contact"],
+  // emits: {
+  //   "toggle-favorite": function (id) {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.error("Id is missing");
+  //       return false;
+  //     }
+  //   },
+  // },
+
+  data() {
+    return {
+      detailsAreVisible: false,
+    };
+  },
+  methods: {
+    toggleDetails() {
+      this.detailsAreVisible = !this.detailsAreVisible;
+    },
+    toggleFavorite() {
+      this.$emit("toggle-favorite", this.id);
+    },
+    deleteContact() {
+      this.$emit("delete-contact", this.id);
+    },
+  },
+};
+</script>
+
+<style></style>
