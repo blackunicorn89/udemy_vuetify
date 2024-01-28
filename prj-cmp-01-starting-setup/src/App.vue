@@ -1,39 +1,30 @@
 <template>
-  <ul>
-    <list-of-web-sites
-      v-for="resource in storedResources"
-      :key="resource.id"
-      :title="resource.tittle"
-      :description="resource.description"
-      :link="resource.link"
-    ></list-of-web-sites>
-  </ul>
+  <the-header title="RememberMe"></the-header>
+  <the-resources></the-resources>
 </template>
 <script>
-import ListOfWebSites from '@/components/learning-resources/ListOfWebSites.vue';
+import TheHeader from '@/components/layouts/TheHeader.vue';
+import TheResources from '@/components/learning-resources/TheResources.vue';
 export default {
   components: {
-    ListOfWebSites,
-  },
-  data() {
-    return {
-      storedResources: [
-        {
-          id: 'official-guide',
-          tittle: 'Official guide',
-          description: 'The official Vue.js documentation',
-          link: 'https://vuejs.org',
-        },
-        {
-          id: 'google',
-          tittle: 'Google',
-          description: 'Learn to Google!',
-          link: 'https://google.com',
-        },
-      ],
-    };
+    TheHeader,
+    TheResources,
   },
 };
 </script>
 
-<style scoped></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
