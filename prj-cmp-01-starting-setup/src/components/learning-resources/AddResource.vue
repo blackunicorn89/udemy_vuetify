@@ -1,5 +1,13 @@
 <template>
-  <h2>Add Resource</h2>
+  <base-dialog v-if="inputIsInValid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>Unfornutately at least one input value is invalid or empty. Please check and correct them</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
@@ -8,12 +16,7 @@
       </div>
       <div class="form-control">
         <label for="description">Description: </label>
-        <textarea
-          id="description"
-          name="description"
-          ref="descriptionInput"
-          rows="3"
-        />
+        <textarea id="description" name="description" ref="descriptionInput" rows="3" />
       </div>
       <div class="form-control">
         <label for="link">Link: </label>
@@ -44,11 +47,15 @@ export default {
         enteredDescription.trim() === '' ||
         enteredLink.trim() === ''
       ) {
-        this.inputIsInValid = false;
+        this.inputIsInValid = true;
         return;
       }
       this.addResource(enteredTitle, enteredDescription, enteredLink);
     },
+    confirmError() {
+      this.inputIsInValid = false;
+
+    }
   },
 };
 </script>

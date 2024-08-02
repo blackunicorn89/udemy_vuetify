@@ -1,3 +1,6 @@
+visual studio code:
+	format document: Shift + Alt + F
+
 data() {}
 watch: {
  name(newvalue, oldvalue) {
