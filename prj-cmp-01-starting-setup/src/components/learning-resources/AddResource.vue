@@ -1,7 +1,7 @@
 <template>
   <base-dialog v-if="inputIsInValid" title="Invalid Input" @close="confirmError">
     <template #default>
-      <p>Unfornutately at least one input value is invalid or empty. Please check and correct them</p>
+      <p>Unfornutately at least one input value is invalid or empty. Please check and correct them.</p>
     </template>
     <template #actions>
       <base-button @click="confirmError">Okay</base-button>

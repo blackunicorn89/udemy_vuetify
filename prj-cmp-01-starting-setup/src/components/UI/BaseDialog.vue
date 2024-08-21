@@ -1,5 +1,4 @@
 <template>
-  <div></div>
   <div @click="$emit('close')"></div>
   <dialog open>
     <header>
@@ -12,7 +11,6 @@
     </section>
     <menu>
       <slot name="actions"></slot>
-      <base-button @click="$emit('close')"></base-button>
     </menu>
   </dialog>
 </template>
