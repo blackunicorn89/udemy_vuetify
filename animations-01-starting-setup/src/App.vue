@@ -3,10 +3,18 @@
     <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
+  <div class="container">
+    <transition name="para">
+      <p v-if="paraIsVisible">This is only sometimes visible.</p>
+    </transition>
+    <button @click="toggleParagraph">Toggle Paragraph</button>
+  </div>
+
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
+
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -17,6 +25,7 @@ export default {
   data() {
     return {
       dialogIsVisible: false,
+      paraIsVisible: false,
       animatedBlock: false,
     };
   },
@@ -29,6 +38,10 @@ export default {
     },
     animateBlock() {
       this.animatedBlock = true;
+    },
+    toggleParagraph() {
+      this.paraIsVisible = !this.paraIsVisible;
+
     }
   },
 };
@@ -86,10 +99,38 @@ button:active {
 
 .animate {
   /* transform: translateX(-150px) */
-  animation: slide-fade 0.5s ease-out forwards;
+  animation: slide-fade 0.5s ease-out;
 }
 
-@keyframes slide-fade {
+/* .para-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+} */
+
+.para-enter-active {
+  animation: slide-scale 0.5s ease-in;
+}
+
+/* .para-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+/* .para-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+.para-leave-active {
+  animation: slide-scale 0.5s ease-out;
+}
+
+/* .para-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+} */
+
+@keyframes slide-scale {
   0% {
     transform: translateX(0) scale(1);
   }
